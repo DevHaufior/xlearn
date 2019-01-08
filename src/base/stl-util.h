@@ -38,6 +38,7 @@ void STLDeleteElementsAndClear(Container* c) {
 // like map and unordered_map.
 template <class AssocContainer>
 void STLDeleteValuesAndClear(AssocContainer* c) {
+  // todo 是不是一种适用性广的快速的完成功能的方式，因为不同的数据类型，内部实现迭代器的时候，++操作操作的代价是不一样的
   for (typename AssocContainer::iterator iter = c->begin();
        iter != c->end(); ++iter) {
     if (iter->second != NULL) {

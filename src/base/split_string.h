@@ -54,6 +54,7 @@ void SplitStringToSetUsing(const std::string& full,
 
 template <typename T>
 struct simple_insert_iterator {
+  // todo 目前看来simple_insert_iterator，作为一个迭代器，并没有完成对应的功能
   explicit simple_insert_iterator(T* t) : t_(t) { }
 
   simple_insert_iterator<T>& operator=(const typename T::value_type& value) {
@@ -70,9 +71,11 @@ struct simple_insert_iterator {
 
 template <typename T>
 struct back_insert_iterator {
+  // todo 目前看来simple_insert_iterator，作为一个迭代器，并没有完成对应的功能
   explicit back_insert_iterator(T& t) : t_(t) {}
 
   back_insert_iterator<T>& operator=(const typename T::value_type& value) {
+    // todo 无法确定形参T一定会有push_back方法
     t_.push_back(value);
     return *this;
   }

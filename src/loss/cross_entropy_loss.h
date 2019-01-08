@@ -30,6 +30,7 @@ namespace xLearn {
 // CrossEntropyLoss is used for classification tasks, which
 // has the following form:
 // loss = sum_all_example(log(1.0+exp(-y*pred)))
+    // TODO cross_entropy loss计算是否存在错误？？？
 //------------------------------------------------------------------------------
 class CrossEntropyLoss : public Loss {
  public:

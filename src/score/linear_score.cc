@@ -70,8 +70,9 @@ void LinearScore::CalcGrad(const SparseRow* row,
 // Calculate gradient and update current model using sgd
 void LinearScore::calc_grad_sgd(const SparseRow* row,
                                 Model& model,
-                                real_t pg,
+                                real_t pg, // TODO 分步求导的思想
                                 real_t norm) {
+  // TODO 随机梯度下降，只计算单个样本
   // linear term
   real_t* w = model.GetParameter_w();
   index_t num_feat = model.GetNumFeature();

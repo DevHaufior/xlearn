@@ -32,6 +32,7 @@ This file defines the basic data structures.
 
 namespace xLearn {
 
+// TODO 这几个项目看下来，都限定了系统的value类型，特征的index类型，目的是全局改数据方便？？还是说是计算或数据传输需要？？
 //------------------------------------------------------------------------------
 // We use 32-bits float to store the real number during computation, 
 // such as the model parameter and the gradient.
@@ -184,6 +185,7 @@ struct DMatrix {
     }
     // Delete SparseRow
     std::vector<SparseRow*>().swap(this->row);
+    // TODO 通过swap的方式来清空STL，这里就得去看看 swap到底swap了什么
     // Delete norm
     std::vector<real_t>().swap(this->norm);
     this->row_length = 0;
@@ -278,6 +280,7 @@ struct DMatrix {
   //  | 1 | 2 | 3 | 4 | 5 | 7 | 8 | 10 | 11 | 12 | 20 |
   //  -------------------------------------------------
   void Compress(std::vector<index_t>& feature_list) {
+    // TODO 这里所谓的压缩，是对特征id的压缩，太大的id意味着更多的存储？？但是数值类型对应的底层byte占位不同？？
     // Using a map to store the mapping relations
     size_t node_num {0};
     for (auto row : this->row) {

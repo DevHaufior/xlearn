@@ -84,6 +84,7 @@ void Model::initial(bool set_val) {
     // Conventional malloc for linear term and bias
     param_w_ = (real_t*)malloc(param_num_w_ * sizeof(real_t));
     param_b_ = (real_t*)malloc(aux_size_ * sizeof(real_t));
+    // TODO 像这类参数，不用vector的原因是？？？
     if (score_func_.compare("fm") == 0 ||
         score_func_.compare("ffm") == 0) {
       // Aligned malloc for latent factor
@@ -96,6 +97,7 @@ void Model::initial(bool set_val) {
                 (void**)&param_v_,
                 kAlignByte,
                 param_num_v_ * sizeof(real_t));
+                // TODO 这里的原因是因为param_num_v_的维度多，所以特别处理下？？？
       CHECK_EQ(ret, 0);
 #endif
     } else {
@@ -134,6 +136,8 @@ void Model::set_value() {
   /*********************************************************
    *  Initialize latent factor for fm                      *
    *********************************************************/
+  // TODO 上面linear and bias term初始化时值为0，对应的gradient cache值为1
+  // 而latent factor的初始化值却是0~1之间的随机数，gradient值也是为1，这里参数初始化的根据是什么？
   if (score_func_.compare("fm") == 0) {
     index_t k_aligned = get_aligned_k();
     real_t coef = 1.0f / sqrt(num_K_) * scale_;
@@ -150,6 +154,8 @@ void Model::set_value() {
       }
     }
   }
+
+
   /*********************************************************
    *  Initialize latent factor for ffm                     *
    *********************************************************/

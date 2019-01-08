@@ -154,6 +154,7 @@ class Model {
 
   // Get the aligned size of K.
   inline index_t get_aligned_k() {
+    // TODO 这里的作用和意义是什么？
     return (index_t)ceil((real_t)num_K_/kAlign)*kAlign;
   }
 
@@ -175,6 +176,7 @@ class Model {
   and the gradient cache in param_w_, so
   param_num_w_ = num_feat_ * 2  */
   index_t param_num_w_;
+  //TODO 这里有了一种启示，就是特征和gradient cache可以拍平在一个vector中，节约内存空间
   /* Size of the latent factor. 
   We store both the model parameters and the gradient 
   cache for adagrad in param_v_. 

@@ -25,6 +25,7 @@ struct XLearnAPIErrorEntry {
 };
 
 static XLearnAPIErrorEntry entry;
+// TODO XLearnAPIErrorEntry 全局唯一一个，C_API调用出错时，将错误信息给到这个全局的对象上，使用场景还是得在后面具体看看
 
 const char* XLearnGetLastError() {
   return entry.last_error.c_str();

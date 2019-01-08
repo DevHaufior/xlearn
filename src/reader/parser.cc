@@ -30,6 +30,8 @@ namespace xLearn {
 static const uint32 kMaxLineSize = 500 * 1024;  // 500 KB
 
 static char line_buf[kMaxLineSize];
+// TODO 读文件的时候居然是共用一个内存缓冲区 line_buf，这种处理方式，读数据的过程会比较慢的吧
+// 这。。。正常应该是多线程读取的
 
 //------------------------------------------------------------------------------
 // Class register

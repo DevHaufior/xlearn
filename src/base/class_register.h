@@ -196,3 +196,5 @@ string name and creating them later per the registered name.
   GetRegistry_##register_name().CreateObject(entry_name_as_string)
 
 #endif  // XLEARN_BASE_CLASS_REGISTER_H_
+
+

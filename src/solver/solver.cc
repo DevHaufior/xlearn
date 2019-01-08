@@ -270,6 +270,7 @@ void Solver::init_train() {
     reader_[i]->Reset();
   }
   hyper_param_.num_feature = max_feat + 1;
+  // todo 最终num_feature的个数需要加一？？？
   // Check overflow:
   // INT_MAX +  = 0
   if (hyper_param_.num_feature == 0) {
